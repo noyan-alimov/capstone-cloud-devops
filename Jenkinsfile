@@ -2,7 +2,9 @@ pipeline {
     agent any
     stages {
         stage('test') {
-            echo 'testing jenkins pipeline'
+            steps {
+                echo 'testing jenkins pipeline'
+            }
         }
     }
 }
