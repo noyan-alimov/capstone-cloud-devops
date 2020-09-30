@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker { image 'python:3.5.1' } }
+    agent { docker { image 'python:3.8.6-alpine3.12' } }
     stages {
         stage('install dependencies') {
             steps {
