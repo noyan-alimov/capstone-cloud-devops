@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('test') {
+        stage('setup environment') {
             steps {
                 sh 'echo "Setting up locall environment"'
                 sh '''  sudo apt-get update -y
@@ -17,7 +17,9 @@ pipeline {
             }
         }
         stage('lint') {
-            sh 'pylint --disable=R,C,W1203 app.py'
+            steps {
+                sh 'pylint --disable=R,C,W1203 app.py'
+            }
         }
     }
 }
