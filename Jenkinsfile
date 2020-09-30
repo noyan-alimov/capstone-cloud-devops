@@ -1,19 +1,13 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'python:3.8.6-alpine3.12'
+        }
+    }
     stages {
-        stage('setup environment') {
+        stage('install dependencies') {
             steps {
-                sh 'echo "Setting up locall environment"'
-                sh '''  sudo apt-get update -y
-                        sudo apt-get upgrade  -y
-                        sudo apt-get install python3-venv -y
-                        sudo python3 -m venv ~/.devops &&\
-                        . ~/.devops/bin/activate
-                        which python
-                        sudo apt install python3-pip -y
-                        sudo pip3 install --upgrade pip &&\
-                        sudo pip3 install -r requirements.txt
-                '''
+                sh 'pip install requirements.txt'
             }
         }
         stage('lint') {
