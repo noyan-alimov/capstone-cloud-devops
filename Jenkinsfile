@@ -1,18 +1,9 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.8.6-alpine3.12'
-        }
-    }
+    agent { docker { image 'python:3.5.1' } }
     stages {
-        stage('install dependencies') {
+        stage('build') {
             steps {
-                sh 'pip install requirements.txt'
-            }
-        }
-        stage('lint') {
-            steps {
-                sh 'pylint --disable=R,C,W1203 app.py'
+                sh 'python --version'
             }
         }
     }
